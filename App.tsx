@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { getQuestionsByVariant, totalVariants } from './data/questions';
 import { QuizState } from './types';
@@ -65,13 +64,7 @@ const App: React.FC = () => {
   };
 
   const handleNext = () => {
-    // We need to re-fetch questions here to ensure we have the correct length 
-    // in case of closure staleness, although state.selectedVariant should be stable.
-    // Ideally we rely on current state via functional update, but accessing props/state outside is cleaner if stable.
-    
-    // Using functional update to access the latest state for index
     setState(prev => {
-      // Guard: if we are already showing results or stopped, do nothing
       if (prev.showResults || !prev.isStarted || !prev.selectedVariant) return prev;
 
       const questions = getQuestionsByVariant(prev.selectedVariant);
@@ -86,7 +79,6 @@ const App: React.FC = () => {
       }
     });
 
-    // Reset local UI state (these don't depend on prev state in the same critical way for logic flow)
     setIsAnswered(false);
     setSelectedOption(null);
   };
