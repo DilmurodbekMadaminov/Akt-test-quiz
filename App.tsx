@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { allQuestions, getQuestionsByVariant, totalVariants } from './data/questions';
+import { getQuestionsByVariant, totalVariants } from './data/questions';
 import { QuizState } from './types';
 import { 
   CheckCircle2, 
